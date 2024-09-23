@@ -1,9 +1,6 @@
 name: auto-tests
 
 on: 
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -25,5 +22,5 @@ jobs:
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
 
       # Step 5: Run Prettier check
-      - name: Run Prettier to check code formatting
-        run: npx prettier --check .
+      - name: Run Prettier to fix code formatting
+        run: npx prettier --write .

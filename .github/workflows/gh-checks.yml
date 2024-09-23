@@ -1,0 +1,29 @@
+name: auto-tests
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run ESLint
+      - name: Run ESLint to check for code linting issues
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx
+
+      # Step 5: Run Prettier check
+      - name: Run Prettier to check code formatting
+        run: npx prettier --check .

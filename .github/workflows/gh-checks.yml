@@ -1,6 +1,6 @@
 name: auto-tests
 
-on: 
+on:
   pull_request:
     branches:
       - main

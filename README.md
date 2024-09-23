@@ -7,7 +7,7 @@ Overview
 Footie Friends is a platform designed to help parents organize and join local football meetups for children aged 7-12. The platform prioritizes child safety, providing robust safety features and tools to ensure a secure environment for kids to enjoy the game. With a user-friendly interface and a focus on community building, Footie Friends makes it easy for parents to connect, schedule meetups, and foster a growing community of young football enthusiasts, all while ensuring their children are safe and having fun.
 
 ## Key Features
- - Match Sign-up: Easily register for football meetups in your area with a simple and intuitive interface for age ranges 7-10
+ - Match Sign-up: Easily register for football meetups in your area with a simple and intuitive interface for age ranges 7-12
 - Background Checks: Safety first! All participants undergo -background checks to ensure a secure environment.
 - Regional Match Locations: Find football games close to home, with a growing list of local options.
 - Community-Driven Donations: Contribute to necessary equipment and resources with a built-in donation feature.
@@ -22,3 +22,8 @@ Footie Friends is a platform designed to help parents organize and join local fo
 - have description box on thing available  
 - create a filter function that can sort though event lists to show events in the morning + snacks 
 - manin platform is desktop
+
+# Hosted webpage link
+
+- link to deployed site : https://final-project-final-destination.onrender.com/
+- link to figma board : https://www.figma.com/board/os6K2k36YilA1Szs8dnfSi/week-13---group-project?node-id=18-1378&node-type=text&t=qlzqpvAHIvTVd8Ai-0

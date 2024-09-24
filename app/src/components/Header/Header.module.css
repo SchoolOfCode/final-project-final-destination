@@ -1,3 +1,29 @@
+.container {
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 10px;
+}
 .header {
-  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  background-color: green;
+}
+.signOut {
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav {
+  background-color: #4caf50;
+  padding: 10px 0;
+}
+.nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
 }

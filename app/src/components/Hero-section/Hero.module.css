@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  height: 100%;
+  padding: 10px;
+}
+
+.hero {
+  flex: 1;
+  background-color: red;
+  display: flex;
+  margin-right: 10px;
+}
+
+.certified {
+  width: 300px;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+}

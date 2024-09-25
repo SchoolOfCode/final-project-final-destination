@@ -1,3 +1,3 @@
-export default function EventPage({ params }) {
-  return <h1>Event Page: {params.eventId}</h1>;
+export default function EventPage({ eventId }) {
+  return <h1>Event Page: {eventId}</h1>;
 }

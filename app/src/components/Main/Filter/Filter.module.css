@@ -1,0 +1,17 @@
+.filterWrapper {
+	display: flex;
+	height: 50px;
+	width: 100%;
+	align-items: center;
+	justify-content: space-around;
+	background-color: white;
+	border-radius: 15px;
+}
+
+.filterBtn {
+	background-color: rgb(128, 0, 98);
+	border-radius: 5px;
+	color: rgb(15, 14, 14);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}

@@ -1,53 +1,22 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Main.module.css";
 import Filter from "./Filter/Filter";
 import Image from "next/image";
 
 export default function Main() {
-	let [events, setFilteredEvents] = useState([
-		{
-			id: 1,
-			icon: "🏆",
-			title: "Saturday Kickabout",
-			date: "2024-09-28",
-			time: "morning",
-			location: "Local Park",
-			distance: 5,
-			age: "11-12"
-		},
-		{
-			id: 2,
-			icon: "👥",
-			title: "Sunday Skills Session",
-			date: "2024-09-29",
-			time: "afternoon",
-			location: "Local Park",
-			distance: 10,
-			age: "7-10"
-		},
-		{
-			id: 3,
-			icon: "⚽",
-			title: "After-school Football",
-			date: "2024-09-30",
-			time: "afternoon",
-			location: "School Grounds",
-			distance: 20,
-			age: "Under 7"
-		},
-		{
-			id: 4,
-			icon: "⚽",
-			title: "Capture the flag Football",
-			date: "2024-09-30",
-			time: "morning",
-			location: "park",
-			distance: 5,
-			age: "Under 7"
-		}
-	]);
+	let [events, setFilteredEvents] = useState([])
+
+	const getData = async () => {
+		const data = await fetch("https://3000.fais.al/api/events");
+		const event_data = await data.json();
+		setFilteredEvents(event_data);
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
 	const applyFilters = (filters) => {
     let filtered = events;

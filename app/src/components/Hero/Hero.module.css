@@ -1,0 +1,22 @@
+.main {
+  margin-top: 20px;
+}
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.heroContent {
+  flex: 1;
+}
+.heroImage {
+  flex: 1;
+}
+
+.image {
+  border-radius: 20px;
+}
+

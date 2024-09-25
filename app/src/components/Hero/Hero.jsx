@@ -19,11 +19,12 @@ export default function Hero() {
           </section>
         </div>
         <div className={styles.heroImage}>
-          <Image className={styles.image}
+          <Image
             src="/kids-football.jpg"
             alt="Children playing football"
             width={500}
             height={300}
+            className={styles.resizableImage}
           />
         </div>
       </section>

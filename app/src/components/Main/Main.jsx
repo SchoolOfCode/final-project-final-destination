@@ -22,10 +22,8 @@ export default function Main() {
     let filtered = events;
 
     // Filter by distance
-    if (filters.distance) {
-      filtered = filtered.filter(
-        (event) => event.distance <= parseInt(filters.distance)
-      );
+    if (filters.borough) {
+    filtered = filtered.filter((event) => event.borough === filters.borough);
     }
 
     // Filter by time
@@ -47,25 +45,36 @@ export default function Main() {
   };
 
 	return (
-		<div className={styles.main}>
-			<section className={styles.filter}>
-				<Filter onFilterChange={applyFilters}/>
-			</section>
-			<section className={styles.events}>
-				<h3>Upcoming Football Events</h3>
-				<div className={styles.eventList}>
-					{events.map((events) => (
-						<div key={events} className={styles.eventCard}>
-							<Image height="100" width="200" src="/pitch.jpg" />
-							<div className={styles.eventInfo}>
-								<h4>{events.title}</h4>
-								<p>{events.location}</p>
-								<p>{events.date}</p>
-							</div>
-						</div>
-					))}
-				</div>
-			</section>
-		</div>
-	);
+    <div className={styles.main}>
+      <section className={styles.filter}>
+        <Filter onFilterChange={applyFilters} />
+      </section>
+
+      {events.length > 0 ? (
+        <section className={styles.events}>
+          <h3>Upcoming Football Events</h3>
+          <div className={styles.eventList}>
+            {events.map((event) => (
+              <div key={event.id} className={styles.eventCard}>
+                {/* Ensure correct use of next/image with alt attribute */}
+                <Image
+                  height={100}
+                  width={200}
+                  src="/pitch.jpg"
+                  alt={event.title}
+                />
+                <div className={styles.eventInfo}>
+                  <h4>{event.title}</h4>
+                  <p>{event.location}</p>
+                  <p>{event.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <p>No events found matching your filters.</p>
+      )}
+    </div>
+  );
 }

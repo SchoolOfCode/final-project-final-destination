@@ -2,14 +2,14 @@ import { useState } from "react";
 import styles from "./Filter.module.css"
 
 export default function Filter({ onFilterChange }) {
-	const [distance, setDistance] = useState("");
+	const [borough, setborough] = useState("");
 	const [time, setTime] = useState("");
 	const [date, setDate] = useState("");
 	const [age, setAge] = useState("");
 
 	const handleFilterChange = () => {
 		onFilterChange({
-			distance,
+			borough,
 			time,
 			date,
 			age
@@ -19,12 +19,13 @@ export default function Filter({ onFilterChange }) {
 	return (
 		<div className={styles.filterWrapper}>
 			<div>
-				<label>Distance (km): </label>
-				<select value={distance} onChange={(e) => setDistance(e.target.value)}>
+				<label>Borough: </label>
+				<select value={borough} onChange={(e) => setborough(e.target.value)}>
 					<option value="">Any</option>
-					<option value="5">Up to 5 km</option>
-					<option value="10">Up to 10 km</option>
-					<option value="20">Up to 20 km</option>
+					<option value="Lambeth">Lambeth</option>
+					<option value="Croydon">Croydon</option>
+					<option value="Hackney">Hackney</option>
+					<option value="Camden">Camden</option>
 				</select>
 			</div>
 
@@ -53,7 +54,7 @@ export default function Filter({ onFilterChange }) {
 				</select>
 			</div>
 
-			<button onClick={handleFilterChange}>Apply Filters</button>
+			<button className={styles.filterBtn} type="button" onClick={handleFilterChange}>Apply Filters</button>
 		</div>
 	);
 }

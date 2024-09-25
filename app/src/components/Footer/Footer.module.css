@@ -3,8 +3,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-top: 1px solid #ddd;
+  color: rgb(251, 246, 246);
+  background-color: #073b3a;
+  padding: 15px 20px 15px;
+  margin: 10px 0px 20px;
+  border-radius: 15px;
 }
+
 .socialMedia a {
   margin-right: 10px;
+}
+
+.footer h3 {
+  margin-top: 0;
+}
+
+.footer a {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer a:hover {
+  color: rgb(85, 87, 87);
 }

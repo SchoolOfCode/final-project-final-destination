@@ -7,7 +7,7 @@ export default function Header() {
     <div className={styles.container}>
       <header className={styles.header}>
         <Image
-          src="/logo.png"
+          src="/football.png"
           alt="Footie Friends Logo"
           width={100}
           height={80}

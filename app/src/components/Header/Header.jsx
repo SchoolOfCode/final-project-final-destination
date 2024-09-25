@@ -9,8 +9,8 @@ export default function Header() {
         <Image
           src="/logo.png"
           alt="Footie Friends Logo"
-          width={100}
-          height={80}
+          width={150}
+          height={150}
         />
         <h1>Footie Friends</h1>
         <button className={styles.signOut}>Sign out</button>

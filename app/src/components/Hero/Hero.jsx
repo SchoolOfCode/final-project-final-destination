@@ -19,7 +19,7 @@ export default function Hero() {
           </section>
         </div>
         <div className={styles.heroImage}>
-          <Image
+          <Image className={styles.image}
             src="/kids-football.jpg"
             alt="Children playing football"
             width={500}

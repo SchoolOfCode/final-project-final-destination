@@ -17,6 +17,11 @@ testing ✅
 
 1. seed some data in users table ✅
 2. make a query to the database and check what we get back✅
-3. finish creating the schema (other tables)
-4. seed the rest of the database 
-5. Make queries for the whole database
+3. finish creating the schema (other tables) ✅
+4. seed the rest of the database ✅
+5. Make queries for the whole database ✅
+6. import express 
+7. use middleware to convert our data to JSON 
+8. set up our root handlers - GET , POST , DELETE 
+9. need to create helper functions 
+

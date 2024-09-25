@@ -27,3 +27,5 @@ Footie Friends is a platform designed to help parents organize and join local fo
 
 - link to deployed site : https://final-project-final-destination.onrender.com/
 - link to figma board : https://www.figma.com/board/os6K2k36YilA1Szs8dnfSi/week-13---group-project?node-id=18-1378&node-type=text&t=qlzqpvAHIvTVd8Ai-0
+
+git checkout -b backend_branch origin/backend_branch

@@ -33,6 +33,11 @@ const queryText = `
     skill_level TEXT,
     max_participants INT
   );
+  INSERT INTO meetups (organizer_id, title, description, location, date, age_group, skill_level, max_participants) VALUES
+    (1, 'Weekend Football Fun', 'A casual football meetup for kids.', 'Central Park, London', '2024-10-05 10:00:00+01', '7-12', 'Beginner', 5),
+    (2, 'Junior Football League', 'Competitive football for junior players.', 'Westfield Sports Ground', '2024-10-12 14:00:00+01', '7-12', 'Intermediate', 5),
+    (3, 'Soccer Stars Training', 'Football drills and fun for young enthusiasts.', 'Community Center Field', '2024-10-19 09:30:00+01', '7-12', 'Beginner', 5);
+
 
   CREATE TABLE IF NOT EXISTS attendees (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -41,6 +46,29 @@ const queryText = `
     status TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
   );
+
+  INSERT INTO attendees (user_id, meetup_id, status) VALUES
+-- Attendees for Meetup 1
+    (2, 1, 'Confirmed'),
+    (3, 1, 'Confirmed'),
+    (4, 1, 'Pending'),
+    (5, 1, 'Confirmed'),
+    (1, 1, 'Confirmed'),
+
+    -- Attendees for Meetup 2
+    (3, 2, 'Confirmed'),
+    (4, 2, 'Confirmed'),
+    (5, 2, 'Pending'),
+    (1, 2, 'Confirmed'),
+    (2, 2, 'Confirmed'),
+
+    -- Attendees for Meetup 3
+    (4, 3, 'Confirmed'),
+    (5, 3, 'Confirmed'),
+    (1, 3, 'Pending'),
+    (2, 3, 'Confirmed'),
+    (3, 3, 'Confirmed');
+
 
   ALTER TABLE attendees
     DROP CONSTRAINT IF EXISTS attendees_meetup_id_fkey;
@@ -52,21 +80,21 @@ const queryText = `
 ;
 
 
-// (async () => {
-//   try {
-//     // Execute the SQL query
-//     await pool.query(queryText);
-//     console.log('Tables created/modified successfully');
-//   } catch (err) {
-//     console.error('Error executing query', err.stack);
-//   } finally {
-//     // End the pool to free up resources
-//     await pool.end();
-//   }
-// })();
+  /*(async () => {
+     try {
+    //Execute the SQL query
+     await pool.query(queryText);
+      console.log('Tables created/modified successfully');
+      } catch (err) {
+      console.error('Error executing query', err.stack);
+     } finally {
+    //End the pool to free up resources
+    await pool.end();
+  }
+})();*/
 
 
-async function getUsers() {
+/*async function getUsers() {
   const queryText = "SELECT * FROM users ORDER BY id ";
   // Use the pool object to send the query to the database
   const result = await pool.query(queryText);
@@ -74,9 +102,28 @@ async function getUsers() {
   return console.log(result.rows);
 
   // Query the database and return all resource ones
+}*/
+
+
+/*async function getUsers() {
+  const queryText = "SELECT * FROM meetups ORDER BY organizer_id ";
+  // Use the pool object to send the query to the database
+  const result = await pool.query(queryText);
+  // The rows property of the result object contains the retrieved records
+  return console.log(result.rows);
+
+  // Query the database and return all resource ones
+}*/
+
+async function getUsers() {
+  const queryText = "SELECT * FROM attendees ORDER BY user_id ";
+  // Use the pool object to send the query to the database
+  const result = await pool.query(queryText);
+  // The rows property of the result object contains the retrieved records
+  return console.log(result.rows);
+
+  // Query the database and return all resource ones
 }
-
-
 getUsers()
 
 

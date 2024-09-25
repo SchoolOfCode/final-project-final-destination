@@ -1,4 +1,4 @@
-"use Client";
+import React from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 
@@ -7,10 +7,10 @@ export default function Header() {
     <div className={styles.container}>
       <header className={styles.header}>
         <Image
-          src="/football.png"
+          src="/logo.png"
           alt="Footie Friends Logo"
           width={100}
-          height={50}
+          height={80}
         />
         <h1>Footie Friends</h1>
         <button className={styles.signOut}>Sign out</button>

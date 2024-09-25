@@ -1,0 +1,28 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.filter button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.events {
+  margin-bottom: 40px;
+}
+.eventList {
+  display: flex;
+  justify-content: space-between;
+}
+.eventCard {
+  width: 30%;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+.eventImage {
+  height: 150px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}

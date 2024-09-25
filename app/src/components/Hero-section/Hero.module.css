@@ -1,19 +1,15 @@
-.container {
-  display: flex;
-  height: 100%;
-  padding: 10px;
+.main {
+  margin-top: 20px;
 }
-
 .hero {
-  flex: 1;
-  background-color: red;
   display: flex;
-  margin-right: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
 }
-
-.certified {
-  width: 300px;
-  background-color: aliceblue;
-  display: flex;
-  flex-direction: column;
+.heroContent {
+  flex: 1;
+}
+.heroImage {
+  flex: 1;
 }

@@ -4,18 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
-  const getData = async () => {
+  const getData = async (eventId) => {
     const data = await fetch(
-      `http://localhost:3000/api/event/${params.eventId}`
+      `http://localhost:3000/api/event/${eventId}`
     );
     const event_data = await data.json();
     setEventData(event_data[0]);
   };
 
   useEffect(() => {
-    getData();
-    console.log(eventData);
-  }, []);
+    getData(params.eventId);
+  }, [params.eventId]);
   return (
     <>
       <div className={styles.eventInfo}>

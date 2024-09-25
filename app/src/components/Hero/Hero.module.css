@@ -7,6 +7,7 @@
   align-items: center;
   margin-bottom: 40px;
   color: white;
+  gap: 10px;
 }
 
 .heroContent {
@@ -16,7 +17,9 @@
   flex: 1;
 }
 
-.image {
+.resizableImage {
   border-radius: 20px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
-

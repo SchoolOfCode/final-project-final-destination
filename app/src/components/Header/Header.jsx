@@ -15,12 +15,6 @@ export default function Header() {
         <h1>Footie Friends</h1>
         <button className={styles.signOut}>Sign out</button>
       </header>
-      <nav className={styles.nav}>
-        <a href="#home">Home</a>
-        <a href="#events">Events</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
     </div>
   );
 }

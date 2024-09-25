@@ -14,7 +14,10 @@
 }
 .eventList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Each card will take up at least 300px */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Each card will take up at least 300px */
   gap: 16px; /* Adds spacing between the cards */
 }
 .eventCard {
@@ -30,7 +33,7 @@
 }
 
 .main {
-  background-color: #8b8b8b;
+  background-color: rgb(216, 213, 213);
   padding: 20px;
   border-radius: 10px;
 }

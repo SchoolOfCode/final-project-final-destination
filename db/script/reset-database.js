@@ -32,7 +32,8 @@ const queryText = `
     age_group TEXT,
     skill_level TEXT,
     max_participants INT,
-    borough TEXT
+    borough TEXT,
+    parking  boolean, 
   );
   INSERT INTO meetups (organizer_id, title, description, location, date, age_group, skill_level, max_participants, borough) VALUES
     (1, 'Weekend Football Fun', 'A casual football meetup for kids.', 'Central Park, London', '2024-10-05 10:00:00+01', '7-8', 'Beginner', 5, 'Hammersmith and Fulham'),

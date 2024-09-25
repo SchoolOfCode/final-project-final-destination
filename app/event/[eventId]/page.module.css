@@ -1,0 +1,46 @@
+.eventnfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.details {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.image {
+  flex: 1;
+  text-align: center;
+}
+
+.hostInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+.dateVenue {
+  flex: 1;
+}
+
+.attendees {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.attendees-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.comments {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 2px solid #ddd;
+}

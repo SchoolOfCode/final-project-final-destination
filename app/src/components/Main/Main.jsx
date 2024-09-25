@@ -81,8 +81,8 @@ export default function Main() {
           </div>
           <div className={styles.eventList}>
             {currentEvents.map((event) => (
-              <Link href={`/event/${event.id}`}>
-                <div key={event.id} className={styles.eventCard}>
+              <Link key={event.id} href={`/event/${event.id}`}>
+                <div className={styles.eventCard}>
                   <Image
                     height={100}
                     width={200}

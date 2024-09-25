@@ -1,57 +1,61 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import styles from "./Main.module.css"
-import Filter from "./Filter/Filter"
-import Image from "next/image"
+import { useEffect, useState } from "react";
+import styles from "./Main.module.css";
+import Filter from "./Filter/Filter";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Main() {
-  const [events, setEvents] = useState([])
-  const [filteredEvents, setFilteredEvents] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [eventsPerPage, setEventsPerPage] = useState(8)
+  const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage, setEventsPerPage] = useState(8);
 
   const getData = async () => {
-    const data = await fetch("https://3000.fais.al/api/events")
-    const event_data = await data.json()
-    setEvents(event_data)
-    setFilteredEvents(event_data)
-  }
+    const data = await fetch("http://localhost:3000/api/events");
+    const event_data = await data.json();
+    setEvents(event_data);
+    setFilteredEvents(event_data);
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   const applyFilters = (filters) => {
-    let filtered = events
+    let filtered = events;
 
     if (filters.borough) {
-      filtered = filtered.filter((event) => event.borough === filters.borough)
+      filtered = filtered.filter((event) => event.borough === filters.borough);
     }
 
     if (filters.time) {
-      filtered = filtered.filter((event) => event.time === filters.time)
+      filtered = filtered.filter((event) => event.time === filters.time);
     }
 
     if (filters.date) {
-      filtered = filtered.filter((event) => event.date === filters.date)
+      filtered = filtered.filter((event) => event.date === filters.date);
     }
 
     if (filters.age) {
-      filtered = filtered.filter((event) => event.age === filters.age)
+      filtered = filtered.filter((event) => event.age === filters.age);
     }
 
-    setFilteredEvents(filtered)
-    setCurrentPage(1)
-  }
+    setFilteredEvents(filtered);
+    setCurrentPage(1);
+  };
 
   // Get current events
-  const indexOfLastEvent = currentPage * eventsPerPage
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage
-  const currentEvents = filteredEvents.slice(indexOfFirstEvent, indexOfLastEvent)
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = filteredEvents.slice(
+    indexOfFirstEvent,
+    indexOfLastEvent
+  );
 
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className={styles.main}>
@@ -66,8 +70,8 @@ export default function Main() {
             <select
               value={eventsPerPage}
               onChange={(e) => {
-                setEventsPerPage(Number(e.target.value))
-                setCurrentPage(1)
+                setEventsPerPage(Number(e.target.value));
+                setCurrentPage(1);
               }}
             >
               <option value="4">4 per page</option>
@@ -77,27 +81,37 @@ export default function Main() {
           </div>
           <div className={styles.eventList}>
             {currentEvents.map((event) => (
-              <div key={event.id} className={styles.eventCard}>
-                <Image height={100} width={200} src="/pitch.jpg" alt={event.title} />
-                <div className={styles.eventInfo}>
-                  <h4>{event.title}</h4>
-                  <p>{event.location}</p>
-                  <p>{event.date}</p>
+              <Link href={`/event/${event.id}`}>
+                <div key={event.id} className={styles.eventCard}>
+                  <Image
+                    height={100}
+                    width={200}
+                    src="/pitch.jpg"
+                    alt={event.title}
+                  />
+                  <div className={styles.eventInfo}>
+                    <h4>{event.title}</h4>
+                    <p>{event.location}</p>
+                    <p>{event.date}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className={styles.pagination}>
-            {Array.from({ length: Math.ceil(filteredEvents.length / eventsPerPage) }, (_, i) => (
-              <button key={i} onClick={() => paginate(i + 1)}>
-                {i + 1}
-              </button>
-            ))}
+            {Array.from(
+              { length: Math.ceil(filteredEvents.length / eventsPerPage) },
+              (_, i) => (
+                <button key={i} onClick={() => paginate(i + 1)}>
+                  {i + 1}
+                </button>
+              )
+            )}
           </div>
         </section>
       ) : (
         <p>No events found matching your filters.</p>
       )}
     </div>
-  )
+  );
 }

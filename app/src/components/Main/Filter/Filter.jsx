@@ -54,7 +54,7 @@ export default function Filter({ onFilterChange }) {
 				</select>
 			</div>
 
-			<button onClick={handleFilterChange}>Apply Filters</button>
+			<button className={styles.filterBtn} type="button" onClick={handleFilterChange}>Apply Filters</button>
 		</div>
 	);
 }

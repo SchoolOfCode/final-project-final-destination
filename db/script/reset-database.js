@@ -54,7 +54,7 @@ INSERT INTO meetups (organizer_id, title, description, location, date, age_group
     (2, 'After School Football Club', 'Weekly football sessions after school.', 'Local Sports Center', '2024-11-02 17:00:00+01', '11-12', 'Beginner', 15, 'Tower Hamlets', 'Yes', 'Evening'),
     (3, 'Goalkeeper Training Camp', 'Specialized training for aspiring goalkeepers.', 'Sports Academy', '2024-11-09 08:00:00+01', '9-10', 'Intermediate', 6, 'Wandsworth', 'Yes', 'Morning'),
     (1, 'Football Fitness Fun', 'Fitness through football activities.', 'Community Recreation Ground', '2024-11-16 15:00:00+01', '7-8', 'Beginner', 10, 'Bromley', 'No', 'Afternoon'),
-    (2, 'Winter Football Workshop', 'Indoor sessions focusing on skills.', 'Indoor Sports Hall', '2024-11-23 10:00:00+01', '8-9', 'Intermediate', 12, 'Haringey', 'Yes', 'Morning'),
+    (2, 'Winter Football Workshop', 'Indoor sessions focusing on skills.', 'Indoor Sports Hall', '2024-11-23 10:00:00+01', '8-9', 'Intermediate', 12, 'Bromley', 'Yes', 'Morning'),
     (3, 'Football Skills Showcase', 'Show off your skills in a fun setting.', 'Central Sports Park', '2024-11-30 19:00:00+01', '11-12', 'All', 20, 'Richmond upon Thames', 'No', 'Evening'),
     (1, 'Football Parent-Child Day', 'A day of fun games for kids and parents.', 'City Park', '2024-12-07 10:00:00+01', '5-12', 'Beginner', 10, 'Barnet', 'Yes', 'Morning'),
     (2, 'Holiday Football Camp', 'A week of football during the holidays.', 'Local Stadium', '2024-12-14 09:00:00+01', '7-10', 'All', 30, 'Bexley', 'No', 'Morning'),

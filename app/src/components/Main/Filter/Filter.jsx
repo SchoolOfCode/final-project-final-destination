@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Filter.module.css"
 
-export default function Filter({ onFilterChange }) {
+export default function Filter({ onFilterChange, resetSearch }) {
 	const [borough, setborough] = useState("");
 	const [time, setTime] = useState("");
 	const [date, setDate] = useState("");
@@ -26,6 +26,7 @@ export default function Filter({ onFilterChange }) {
 					<option value="Croydon">Croydon</option>
 					<option value="Hackney">Hackney</option>
 					<option value="Camden">Camden</option>
+					<option value="Bromley">Bromley</option>
 				</select>
 			</div>
 
@@ -55,6 +56,8 @@ export default function Filter({ onFilterChange }) {
 			</div>
 
 			<button className={styles.filterBtn} type="button" onClick={handleFilterChange}>Apply Filters</button>
+
+			<button className={styles.resetBtn} type="button" onClick={resetSearch}>Reset</button>
 		</div>
 	);
 }

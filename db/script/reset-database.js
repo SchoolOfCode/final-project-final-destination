@@ -74,8 +74,7 @@ CREATE TABLE IF NOT EXISTS attendees (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id BIGINT REFERENCES users(id),
     meetup_id BIGINT REFERENCES meetups(id),
-    status TEXT,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    status TEXT
 );
 
 INSERT INTO attendees (user_id, meetup_id, status) VALUES

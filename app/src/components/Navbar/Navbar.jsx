@@ -6,6 +6,7 @@ export default function Navbar() {
     <nav className={styles.nav}>
       <Link href="/">Home</Link>
       <Link href="#event-list">Events</Link>
+      <Link href="/create">Create Event</Link>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>

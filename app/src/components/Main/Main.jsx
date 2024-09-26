@@ -5,12 +5,31 @@ import styles from "./Main.module.css";
 import Filter from "./Filter/Filter";
 import Image from "next/image";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 export default function Main() {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [eventsPerPage, setEventsPerPage] = useState(8);
+  const [filters, setFilters] = useState({
+    borough: "",
+    time: "",
+    date: "",
+    age: "",
+  });
+
+  const photos = [
+    "/homepage-images/Camps-Playing-1.jpg",
+    "/homepage-images/football-3.jpg",
+    "/homepage-images/football-older-kids.jpg",
+    "/homepage-images/girl-football-2.jpg",
+    "/homepage-images/indoor-football-2.jpg",
+    "/homepage-images/indoor-football-3.jpg",
+    "/homepage-images/indoor-girls-football-2.jpg",
+    "/homepage-images/outdoor-football-5.jpg",
+    "/homepage-images/youthfootball-1.jpg",
+  ];
 
   const getData = async () => {
     const data = await fetch("http://localhost:3000/api/events");
@@ -53,6 +72,12 @@ export default function Main() {
     setCurrentPage(1);
   };
 
+  const resetFilters = () => {
+    setFilters({ borough: "", time: "", date: "", age: "" });
+    setFilteredEvents(events);
+    setCurrentPage(1);
+  };
+
   // Get current events
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
@@ -65,9 +90,9 @@ export default function Main() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className={styles.main}>
+    <div id="event-list" className={styles.main}>
       <section className={styles.filter}>
-        <Filter onFilterChange={applyFilters} />
+        <Filter onFilterChange={applyFilters} resetSearch={resetFilters} />
       </section>
 
       {filteredEvents.length > 0 ? (
@@ -87,13 +112,13 @@ export default function Main() {
             </select>
           </div>
           <div className={styles.eventList}>
-            {currentEvents.map((event) => (
-              <Link key={event.id} href={`/event/${event.id}`}>
-                <div className={styles.eventCard}>
+            {currentEvents.map((event, index) => (
+              <Link href={`/event/${event.id}`}>
+                <div key={event.id} className={styles.eventCard}>
                   <Image
                     height={100}
                     width={200}
-                    src="/pitch.jpg"
+                    src={photos[index % photos.length]}
                     alt={event.title}
                   />
                   <div className={styles.eventInfo}>
@@ -109,7 +134,11 @@ export default function Main() {
             {Array.from(
               { length: Math.ceil(filteredEvents.length / eventsPerPage) },
               (_, i) => (
-                <button key={i} onClick={() => paginate(i + 1)}>
+                <button
+                  className={styles.pageBtn}
+                  key={i}
+                  onClick={() => paginate(i + 1)}
+                >
                   {i + 1}
                 </button>
               )

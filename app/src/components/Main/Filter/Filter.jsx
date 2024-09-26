@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styles from "./Filter.module.css";
 
-export default function Filter({ onFilterChange }) {
-  const [borough, setBorough] = useState("");
-  const [timePeriod, setTimePeriod] = useState("");
-  const [date, setDate] = useState("");
-  const [ageGroup, setAgeGroup] = useState("");
+export default function Filter({ onFilterChange, resetSearch }) {
+	const [borough, setborough] = useState("");
+	const [time, setTime] = useState("");
+	const [date, setDate] = useState("");
+	const [age, setAge] = useState("");
 
   const handleFilterChange = () => {
     onFilterChange({
@@ -15,34 +15,20 @@ export default function Filter({ onFilterChange }) {
       ageGroup,
     });
   };
-  return (
-    <div className={styles.filterWrapper}>
-      <div>
-        <label>Borough: </label>
-        <select value={borough} onChange={(e) => setBorough(e.target.value)}>
-          <option value="">Any</option>
-          <option value="Brent">Brent</option>
-          <option value="Lambeth">Lambeth</option>
-          <option value="Croydon">Croydon</option>
-          <option value="Hackney">Hackney</option>
-          <option value="Camden">Camden</option>
-        </select>
-      </div>
 
-      <div>
-        <label>Time Period: </label>
-        <select
-          value={timePeriod}
-          onChange={(e) => {
-            setTimePeriod(e.target.value);
-          }}
-        >
-          <option value="">Any</option>
-          <option value="Morning">Morning</option>
-          <option value="Afternoon">Afternoon</option>
-          <option value="Evening">Evening</option>
-        </select>
-      </div>
+	return (
+		<div className={styles.filterWrapper}>
+			<div>
+				<label>Borough: </label>
+				<select value={borough} onChange={(e) => setborough(e.target.value)}>
+					<option value="">Any</option>
+					<option value="Lambeth">Lambeth</option>
+					<option value="Croydon">Croydon</option>
+					<option value="Hackney">Hackney</option>
+					<option value="Camden">Camden</option>
+					<option value="Bromley">Bromley</option>
+				</select>
+			</div>
 
       <div>
         <label>Date: </label>
@@ -64,13 +50,19 @@ export default function Filter({ onFilterChange }) {
         </select>
       </div>
 
-      <button
-        className={styles.filterBtn}
-        type="button"
-        onClick={handleFilterChange}
-      >
-        Apply Filters
-      </button>
-    </div>
-  );
+			<div>
+				<label>Age Group: </label>
+				<select value={age} onChange={(e) => setAge(e.target.value)}>
+					<option value="">Any</option>
+					<option value="kids">Under 7</option>
+					<option value="teens">7-10</option>
+					<option value="adults">11-12</option>
+				</select>
+			</div>
+
+			<button className={styles.filterBtn} type="button" onClick={handleFilterChange}>Apply Filters</button>
+
+			<button className={styles.resetBtn} type="button" onClick={resetSearch}>Reset</button>
+		</div>
+	);
 }

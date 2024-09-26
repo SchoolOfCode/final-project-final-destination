@@ -2,6 +2,7 @@
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import "bootstrap-icons/font/bootstrap-icons.css";
 export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
   const getData = async (eventId) => {
@@ -11,8 +12,9 @@ export default function EventPage({ params }) {
   };
 
   useEffect(() => {
-    getData(params.eventId);
-  }, [params.eventId]);
+    getData();
+    console.log(eventData);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -56,10 +58,19 @@ export default function EventPage({ params }) {
       {/* Date/Time/Address */}
       <div className={styles.details}>
         <h4>Date & Time</h4>
-        <p>{eventData.date}</p>
-        <p>Time of day: {eventData.time_period}</p>
-        <p>Meetup Location: {eventData.location}</p>
-        <p>Within {eventData.borough}</p>
+        <p>
+          <i class="bi bi-calendar-heart"></i> {eventData.date}
+        </p>
+        <p>
+          <i class="bi bi-stopwatch"></i> Time of day: {eventData.time_period}
+        </p>
+        <p>
+          <i class="bi bi-geo-alt"></i> Meetup Location: {eventData.location}
+        </p>
+        <p>
+          {" "}
+          <i class="bi bi-pin-map"></i> Within {eventData.borough}
+        </p>
       </div>
 
       {/* Description of Event */}
@@ -83,8 +94,21 @@ export default function EventPage({ params }) {
           ></input>
         </div>
       </section>
+      <div className="joinBtn">
+        <button className={styles.joinButton}>Join Event</button>
+      </div>
     </div>
   );
+}
+
+{
+  /* <p>
+<strong>Age Group:</strong> {eventData.age_group}
+</p>
+<p>{eventData.description}</p>
+<p>
+<strong>Parking:</strong> {eventData.parking}
+</p> */
 }
 
 {

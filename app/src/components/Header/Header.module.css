@@ -1,7 +1,7 @@
 .container {
   margin: 0 auto;
   padding: 0;
-  background: white;
+  background: #073b3a;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,7 @@
 
 .header h1 {
   font-size: 3rem;
+  color: white;
 }
 
 .signOut {

@@ -1,47 +1,46 @@
 .container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 10px;
   padding: 0px 20px;
   background-color: rgb(238, 233, 233);
   margin: 10px;
   border-radius: 20px;
   font-size: 20px;
-
 }
 
 .title {
-  grid-column: 1 / 2;
+  flex-basis: 100%;
   align-self: center;
 }
 
 .hostInfo {
   display: flex;
-  align-items: center;  
-  gap: 15px;  
-  margin-top: 20px;  
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-basis: 65%;
 }
 
 .coachImg {
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .hostInfo h4 {
   margin: 0;
-  font-size: 20px
+  font-size: 20px;
 }
 
 .hostInfo p {
-  grid-column: 1 / span 2; 
-  margin-top: 10px;  
-  margin-left: 0;   
-  font-size: 1rem;   
+  flex-basis: 100%;
+  margin-top: 10px;
+  margin-left: 0;
+  font-size: 1rem;
 }
 
 .imageSection {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  flex-basis: 60%;
 }
 
 .imageResize {
@@ -52,13 +51,11 @@
 }
 
 .details {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  flex-basis: 30%;
 }
 
 .description {
-  grid-column: 1 / 3;
-  grid-row: 3 / 4;
+  flex-basis: 100%;
   margin-top: 20px;
 }
 
@@ -71,4 +68,22 @@
   font-size: 1rem;
   width: 80%;
   border-radius: 10px;
+}
+
+.joinButton {
+  background-color: #073b3a;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pageBtn {
+  all: unset;
+  background-color: #073b3a;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 10px;
 }

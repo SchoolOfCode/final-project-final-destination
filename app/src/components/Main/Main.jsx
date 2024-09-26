@@ -13,7 +13,7 @@ export default function Main() {
   const [eventsPerPage, setEventsPerPage] = useState(8);
 
   const getData = async () => {
-    const data = await fetch("http://localhost:3000/api/events");
+    const data = await fetch(`${window.location.hostname}/api/events`);
     const event_data = await data.json();
     setEvents(event_data);
     setFilteredEvents(event_data);

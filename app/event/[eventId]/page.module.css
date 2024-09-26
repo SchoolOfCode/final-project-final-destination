@@ -1,46 +1,114 @@
-.eventnfo {
+.container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 5px 30px;
+  padding: 20px;
+  background-color: #e6e6fa;
+  margin: 10px;
+  border-radius: 20px;
+  font-size: 20px;
 }
-
-.details {
-  flex: 2;
-  margin-right: 20px;
-}
-
-.image {
+/* Column Styling */
+.column {
   flex: 1;
-  text-align: center;
-}
-
-.hostInfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex: 1;
-  border-left: 1px solid #ddd;
-  padding-left: 20px;
+  gap: 5px;
+  min-width: 300px;
 }
-
-.dateVenue {
-  flex: 1;
+/* Title Styling */
+.title {
+  padding: 0px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
 }
-
-.attendees {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.attendees-list {
+/* Host Info Styling */
+.hostInfo {
   display: flex;
-  justify-content: space-around;
-}
-
-.comments {
-  width: 100%;
+  align-items: center;
+  gap: 15px;
+  padding: 0px 20px;
+  border-radius: 5px;
   margin-top: 20px;
+}
+.coachImg {
+  border-radius: 50%;
+}
+.hostInfo h4 {
+  margin: 0;
+  font-size: 5px 20px;
+}
+.hostInfo p {
+  margin-top: 10px;
+  margin-left: 0;
+  font-size: 1rem;
+}
+/* Image Styling */
+.image {
+  height: 350px;
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
+}
+/* Image Resize */
+.imageResize {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Description Styling */
+.description {
+  padding: 5px 0px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+/* Time and Date Section */
+.timeDate {
+  padding: 10px 20px 5px;
+  border-radius: 5px;
+}
+/* Map Styling */
+.map {
+  background-color: #ff4500;
   padding: 20px;
-  border-top: 2px solid #ddd;
+  border-radius: 5px;
+}
+.btnContainer{
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+/* Button Styling */
+.button {
+  align-self: flex-start;
+  padding: 20px 30px;
+  background-color: #808080;
+  border: none;
+  border-radius: 5px;
+  width: 40%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease,  color 0.3s ease;
+}
+.button:hover {
+  transform: scale(1.1); 
+  background-color: #5fba5d;
+  color: white;
+}
+/* Comments Section Styling */
+.comments {
+  flex-basis: 100%;
+  background-color: #fefefd;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+.commentBox {
+  padding: 10px;
+  font-size: 1rem;
+  width: 90%;
+  border-radius: 10px;
 }

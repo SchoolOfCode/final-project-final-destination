@@ -30,16 +30,23 @@ export default function Main() {
       filtered = filtered.filter((event) => event.borough === filters.borough);
     }
 
-    if (filters.time) {
-      filtered = filtered.filter((event) => event.time === filters.time);
+    if (filters.timePeriod) {
+      filtered = filtered.filter((event) => event.time_period === filters.timePeriod);
     }
 
     if (filters.date) {
-      filtered = filtered.filter((event) => event.date === filters.date);
+      filtered = filtered.filter((event) => {
+        const eventDate = new Date(event.date).toISOString().split('T')[0];
+        return eventDate === filters.date;
+      });
     }
 
-    if (filters.age) {
-      filtered = filtered.filter((event) => event.age === filters.age);
+    if (filters.ageGroup) {
+      filtered = filtered.filter((event) => {
+        const [eventMin, eventMax] = event.age_group.split('-').map(Number);
+        const [filterMin, filterMax] = filters.ageGroup.split('-').map(Number);
+        return eventMin >= filterMin && eventMax <= filterMax;
+      });
     }
 
     setFilteredEvents(filtered);

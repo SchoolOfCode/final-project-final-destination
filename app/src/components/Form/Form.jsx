@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
 
-export default function EventForm() {
+export default function EventForm({ submitForm }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -39,7 +39,7 @@ export default function EventForm() {
     });
 
     res = await res.json();
-    console.log(res);
+    submitForm();
   };
 
   return (

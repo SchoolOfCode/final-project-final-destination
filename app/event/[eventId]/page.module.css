@@ -1,89 +1,114 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0px 20px;
-  background-color: rgb(238, 233, 233);
+  gap: 5px 30px;
+  padding: 20px;
+  background-color: #e6e6fa;
   margin: 10px;
   border-radius: 20px;
   font-size: 20px;
 }
-
-.title {
-  flex-basis: 100%;
-  align-self: center;
+/* Column Styling */
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 300px;
 }
-
+/* Title Styling */
+.title {
+  padding: 0px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+/* Host Info Styling */
 .hostInfo {
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 0px 20px;
+  border-radius: 5px;
   margin-top: 20px;
-  flex-basis: 65%;
 }
-
 .coachImg {
   border-radius: 50%;
 }
-
 .hostInfo h4 {
   margin: 0;
-  font-size: 20px;
+  font-size: 5px 20px;
 }
-
 .hostInfo p {
-  flex-basis: 100%;
   margin-top: 10px;
   margin-left: 0;
   font-size: 1rem;
 }
-
-.imageSection {
-  flex-basis: 60%;
+/* Image Styling */
+.image {
+  height: 350px;
+  position: relative;
+  padding: 5px;
+  border-radius: 5px;
 }
-
+/* Image Resize */
 .imageResize {
-  border-radius: 20px;
-  height: auto;
-  width: auto;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-
-.details {
-  flex-basis: 30%;
-}
-
+/* Description Styling */
 .description {
-  flex-basis: 100%;
-  margin-top: 20px;
+  padding: 5px 0px;
+  border-radius: 5px;
+  margin-top: 5px;
 }
-
+/* Time and Date Section */
+.timeDate {
+  padding: 10px 20px 5px;
+  border-radius: 5px;
+}
+/* Map Styling */
+.map {
+  background-color: #ff4500;
+  padding: 20px;
+  border-radius: 5px;
+}
+.btnContainer{
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+/* Button Styling */
+.button {
+  align-self: flex-start;
+  padding: 20px 30px;
+  background-color: #808080;
+  border: none;
+  border-radius: 5px;
+  width: 40%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease,  color 0.3s ease;
+}
+.button:hover {
+  transform: scale(1.1); 
+  background-color: #5fba5d;
+  color: white;
+}
+/* Comments Section Styling */
 .comments {
-  margin: 10px 0px 25px;
+  flex-basis: 100%;
+  background-color: #fefefd;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
 }
-
 .commentBox {
   padding: 10px;
   font-size: 1rem;
-  width: 80%;
+  width: 90%;
   border-radius: 10px;
-}
-
-.joinButton {
-  background-color: #073b3a;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.pageBtn {
-  all: unset;
-  background-color: #073b3a;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  gap: 10px;
 }

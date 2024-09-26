@@ -72,11 +72,7 @@ export default function Main() {
     setCurrentPage(1);
   };
 
-  const resetFilters = () => {
-    setFilters({ borough: "", time: "", date: "", age: "" });
-    setFilteredEvents(events);
-    setCurrentPage(1);
-  };
+
 
   // Get current events
   const indexOfLastEvent = currentPage * eventsPerPage;
@@ -92,7 +88,7 @@ export default function Main() {
   return (
     <div id="event-list" className={styles.main}>
       <section className={styles.filter}>
-        <Filter onFilterChange={applyFilters} resetSearch={resetFilters} />
+        <Filter onFilterChange={applyFilters} />
       </section>
 
       {filteredEvents.length > 0 ? (

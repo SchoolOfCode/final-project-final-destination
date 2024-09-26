@@ -1,13 +1,26 @@
 import { useState } from "react";
 import styles from "./Filter.module.css";
 
-export default function Filter({ onFilterChange, resetSearch }) {
+export default function Filter({ onFilterChange }) {
 	const [borough, setborough] = useState("");
-	const [time, setTime] = useState("");
+	const [timePeriod, setTimePeriod] = useState("");
 	const [date, setDate] = useState("");
-	const [age, setAge] = useState("");
+	const [ageGroup, setAgeGroup] = useState("");
 
   const handleFilterChange = () => {
+    onFilterChange({
+      borough,
+      timePeriod,
+      date,
+      ageGroup,
+    });
+  };
+
+  const resetSearch = () => {
+    setborough("");
+    setTimePeriod("");
+    setDate("");
+    setAgeGroup("");
     onFilterChange({
       borough,
       timePeriod,
@@ -29,6 +42,16 @@ export default function Filter({ onFilterChange, resetSearch }) {
 					<option value="Bromley">Bromley</option>
 				</select>
 			</div>
+      
+      <div>
+        <label>Time Period: </label>
+        <select value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)}>
+          <option value="">Any</option>
+          <option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+          <option value="Evening">Evening</option>
+        </select>
+      </div>
 
       <div>
         <label>Date: </label>
@@ -49,16 +72,6 @@ export default function Filter({ onFilterChange, resetSearch }) {
           <option value="11-12">11-12</option>
         </select>
       </div>
-
-			<div>
-				<label>Age Group: </label>
-				<select value={age} onChange={(e) => setAge(e.target.value)}>
-					<option value="">Any</option>
-					<option value="kids">Under 7</option>
-					<option value="teens">7-10</option>
-					<option value="adults">11-12</option>
-				</select>
-			</div>
 
 			<button className={styles.filterBtn} type="button" onClick={handleFilterChange}>Apply Filters</button>
 

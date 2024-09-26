@@ -1,18 +1,24 @@
 "use client";
+
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import dayjs from 'dayjs';
 
-
-
 export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
-  const getData = async (eventId) => {
-    const data = await fetch(`http://localhost:3000/api/event/${params.eventId}`);
-    const event_data = await data.json();
-    setEventData(event_data[0]);
+  const getData = async () => {
+    try {
+      const response = await fetch(`${window.location.origin}/api/event/${params.eventId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const event_data = await response.json();
+      setEventData(event_data);
+    } catch (error) {
+      console.error("There was a problem fetching the data:", error);
+    }
   };
 
   useEffect(() => {

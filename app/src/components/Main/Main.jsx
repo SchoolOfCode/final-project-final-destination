@@ -32,10 +32,17 @@ export default function Main() {
   ];
 
   const getData = async () => {
-    const data = await fetch("http://localhost:3000/api/events");
-    const event_data = await data.json();
-    setEvents(event_data);
-    setFilteredEvents(event_data);
+    try {
+      const response = await fetch(`${window.location.origin}/api/events`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const event_data = await response.json();
+      setEvents(event_data);
+      setFilteredEvents(event_data);
+    } catch (error) {
+      console.error("There was a problem fetching the data:", error);
+    }
   };
 
   useEffect(() => {

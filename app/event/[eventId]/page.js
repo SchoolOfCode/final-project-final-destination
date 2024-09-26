@@ -9,10 +9,10 @@ import dayjs from "dayjs";
 export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
 
-  const getData = async (eventId) => {
+  const getData = async () => {
     try {
       const response = await fetch(
-        `${window.location.origin}/api/event/${eventId}`
+        `${window.location.origin}/api/event/${params.eventId}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -24,8 +24,8 @@ export default function EventPage({ params }) {
     }
 
     useEffect(() => {
-      getData(params.eventId);
-    }, [params.eventId]);
+      getData();
+    }, []);
 
     return (
       <div className={styles.container}>

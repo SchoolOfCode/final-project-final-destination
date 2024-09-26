@@ -13,7 +13,10 @@ export default function Header() {
           height={150}
         />
         <h1>Footie Friends</h1>
-        <button className={styles.signOut}>Sign out</button>
+        <div className={styles.loginSection}>
+          <p>Hello Jane! 👋</p>
+          <button className={styles.signOut}>Sign out</button>
+        </div>
       </header>
     </div>
   );

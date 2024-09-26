@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import styles from "./Form.module.css";
 
 export default function EventForm() {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function EventForm() {
   const handleChange = (e) => {
     let { name, value } = e.target;
     if (name === "max_participants") {
-      value = parseInt(value);
+      value = parseInt(value) ;
     }
     setFormData((prevData) => ({
       ...prevData,
@@ -42,9 +43,9 @@ export default function EventForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Title:</label>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.formGroup}>
+        <label htmlFor="title" className={styles.label}>Title:</label>
         <input
           type="text"
           id="title"
@@ -52,22 +53,24 @@ export default function EventForm() {
           value={formData.title}
           onChange={handleChange}
           required
+          className={styles.input}
         />
       </div>
 
-      <div>
-        <label htmlFor="description">Description:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="description" className={styles.label}>Description:</label>
         <textarea
           id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
           required
+          className={styles.textarea}
         />
       </div>
 
-      <div>
-        <label htmlFor="location">Location:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="location" className={styles.label}>Location:</label>
         <input
           type="text"
           id="location"
@@ -75,11 +78,12 @@ export default function EventForm() {
           value={formData.location}
           onChange={handleChange}
           required
+          className={styles.input}
         />
       </div>
 
-      <div>
-        <label htmlFor="date">Date:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="date" className={styles.label}>Date:</label>
         <input
           type="datetime-local"
           id="date"
@@ -87,39 +91,41 @@ export default function EventForm() {
           value={formData.date}
           onChange={handleChange}
           required
+          className={styles.input}
         />
       </div>
 
-      <div>
-          <label htmlFor="age_group">Age Group:</label>
-          <select
-            id="age_group"
-            name="age_group"
-            value={formData.age_group}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Age Group</option>
-            <option value="7-8">7-8</option>
-            <option value="8-9">8-9</option>
-            <option value="9-10">9-10</option>
-            <option value="9-11">9-11</option>
-            <option value="10-12">10-12</option>
-            <option value="7-10">7-10</option>
-            <option value="7-12">7-12</option>
-            <option value="8-12">8-12</option>
-          </select>
+      <div className={styles.formGroup}>
+        <label htmlFor="age_group" className={styles.label}>Age Group:</label>
+        <select
+          id="age_group"
+          name="age_group"
+          value={formData.age_group}
+          onChange={handleChange}
+          required
+          className={styles.select}
+        >
+          <option value="">Select Age Group</option>
+          <option value="7-8">7-8</option>
+          <option value="8-9">8-9</option>
+          <option value="9-10">9-10</option>
+          <option value="9-11">9-11</option>
+          <option value="10-12">10-12</option>
+          <option value="7-10">7-10</option>
+          <option value="7-12">7-12</option>
+          <option value="8-12">8-12</option>
+        </select>
       </div>
 
-
-      <div>
-        <label htmlFor="skill_level">Skill Level:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="skill_level" className={styles.label}>Skill Level:</label>
         <select
           id="skill_level"
           name="skill_level"
           value={formData.skill_level}
           onChange={handleChange}
           required
+          className={styles.select}
         >
           <option value="">Select Skill Level</option>
           <option value="Beginner">Beginner</option>
@@ -128,16 +134,16 @@ export default function EventForm() {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="max_participants">Max Participants:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="max_participants" className={styles.label}>Max Participants:</label>
         <select
           id="max_participants"
           name="max_participants"
           value={formData.max_participants}
           onChange={handleChange}
           required
+          className={styles.select}
         >
-          {/* Create options for numbers 1 to 10 */}
           {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
             <option key={number} value={number}>
               {number}
@@ -146,8 +152,8 @@ export default function EventForm() {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="borough">Borough:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="borough" className={styles.label}>Borough:</label>
         <input
           type="text"
           id="borough"
@@ -155,17 +161,19 @@ export default function EventForm() {
           value={formData.borough}
           onChange={handleChange}
           required
+          className={styles.input}
         />
       </div>
 
-      <div>
-        <label htmlFor="parking">Parking:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="parking" className={styles.label}>Parking:</label>
         <select
           id="parking"
           name="parking"
           value={formData.parking}
           onChange={handleChange}
           required
+          className={styles.select}
         >
           <option value="">Select Parking Option</option>
           <option value="Yes">Yes</option>
@@ -173,14 +181,15 @@ export default function EventForm() {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="time_period">Time Period:</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="time_period" className={styles.label}>Time Period:</label>
         <select
           id="time_period"
           name="time_period"
           value={formData.time_period}
           onChange={handleChange}
           required
+          className={styles.select}
         >
           <option value="">Select Time Period</option>
           <option value="Morning">Morning</option>
@@ -189,7 +198,7 @@ export default function EventForm() {
         </select>
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" className={styles.button}>Submit</button>
     </form>
   );
 }

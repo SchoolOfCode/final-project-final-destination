@@ -3,6 +3,8 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import dayjs from 'dayjs';
+
 
 
 export default function EventPage({ params }) {
@@ -73,10 +75,10 @@ export default function EventPage({ params }) {
       {/* Date/Time/Address */}
       <div className={styles.timeDate}>
         <h4>Date & Time</h4>
-        <p><i class="bi bi-calendar-heart"></i> {eventData.date}</p>
-        <p><i class="bi bi-clock"></i> Time of day: {eventData.time_period}</p>
-        <p><i class="bi bi-geo-alt"></i> Meetup Location: {eventData.location}</p>
-        <p><i class="bi bi-pin-map"></i> Within {eventData.borough}</p>
+        <p><i className="bi bi-calendar-heart"></i> {dayjs(eventData.date).format("MMMM D, YYYY h:mm A")}</p>
+        <p><i className="bi bi-clock"></i> Time of day: {eventData.time_period}</p>
+        <p><i className="bi bi-geo-alt"></i> Meetup Location: {eventData.location}</p>
+        <p><i className="bi bi-pin-map"></i> Within {eventData.borough}</p>
       </div>
   
       {/* Placeholder for map */}

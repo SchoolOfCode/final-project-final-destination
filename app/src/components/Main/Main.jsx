@@ -109,7 +109,7 @@ export default function Main() {
           </div>
           <div className={styles.eventList}>
             {currentEvents.map((event, index) => (
-              <Link href={`/event/${event.id}`}>
+              <Link className={styles.removePurple} href={`/event/${event.id}`}>
                 <div key={event.id} className={styles.eventCard}>
                   <Image
                     height={100}
@@ -120,7 +120,7 @@ export default function Main() {
                   <div className={styles.eventInfo}>
                     <h4>{event.title}</h4>
                     <p>{event.location}</p>
-                    <p>{event.date}</p>
+                    <p>{dayjs(event.date).format("MMMM D, YYYY h:mm A")}</p>
                   </div>
                 </div>
               </Link>

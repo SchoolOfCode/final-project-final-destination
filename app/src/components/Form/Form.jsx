@@ -91,16 +91,26 @@ export default function EventForm() {
       </div>
 
       <div>
-        <label htmlFor="age_group">Age Group:</label>
-        <input
-          type="text"
-          id="age_group"
-          name="age_group"
-          value={formData.age_group}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="age_group">Age Group:</label>
+          <select
+            id="age_group"
+            name="age_group"
+            value={formData.age_group}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Age Group</option>
+            <option value="7-8">7-8</option>
+            <option value="8-9">8-9</option>
+            <option value="9-10">9-10</option>
+            <option value="9-11">9-11</option>
+            <option value="10-12">10-12</option>
+            <option value="7-10">7-10</option>
+            <option value="7-12">7-12</option>
+            <option value="8-12">8-12</option>
+          </select>
       </div>
+
 
       <div>
         <label htmlFor="skill_level">Skill Level:</label>

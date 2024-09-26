@@ -6,7 +6,7 @@ export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
   const getData = async (eventId) => {
     const data = await fetch(
-      `http://localhost:3000/api/event/${eventId}`
+      `${window.location.hostname}/api/event/${eventId}`
     );
     const event_data = await data.json();
     setEventData(event_data[0]);

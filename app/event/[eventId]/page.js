@@ -19,7 +19,7 @@ export default function EventPage({ params }) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const event_data = await response.json();
-      setEventData(event_data);
+      setEventData(event_data[0]);
     } catch (error) {
       console.error("There was a problem fetching the data:", error);
     }
@@ -65,10 +65,13 @@ export default function EventPage({ params }) {
     }
   }
 
+  const loadAllData = async () => {
+    await getEventData();
+    await getAttendeeData();
+  }
+
   useEffect(() => {
-    console.log(eventData)
-    getEventData();
-    getAttendeeData();
+    loadAllData();
   }, []);
 
   return (

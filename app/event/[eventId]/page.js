@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 
 export default function EventPage({ params }) {
   let [eventData, setEventData] = useState({});
+  
   const getData = async () => {
     try {
       const response = await fetch(`${window.location.origin}/api/event/${params.eventId}`);
@@ -19,7 +20,6 @@ export default function EventPage({ params }) {
     } catch (error) {
       console.error("There was a problem fetching the data:", error);
     }
-  };
 
   useEffect(() => {
     getData();

@@ -79,8 +79,6 @@ export default function Main() {
     setCurrentPage(1);
   };
 
-
-
   // Get current events
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;

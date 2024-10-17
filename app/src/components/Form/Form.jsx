@@ -30,7 +30,7 @@ export default function EventForm({ submitForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await fetch("http://localhost:3000/api/event", {
+    let res = await fetch(`${window.location.origin}/api/event`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

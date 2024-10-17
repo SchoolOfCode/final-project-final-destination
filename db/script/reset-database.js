@@ -3,9 +3,9 @@ import {pool} from './index.js'
 
 // SQL query for creating and modifying tables
 const queryText = `
-DROP TABLE users CASCADE;
-DROP TABLE meetups CASCADE;
-DROP TABLE attendees CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS meetups CASCADE;
+DROP TABLE IF EXISTS attendees CASCADE;
 
  CREATE TABLE IF NOT EXISTS users (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

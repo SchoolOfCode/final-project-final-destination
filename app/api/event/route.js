@@ -1,53 +1,54 @@
-import { pool } from "@/db/script/index";
-import { z } from "zod";
-import { NextResponse } from "next/server";
+import { pool, schemas } from "@/db";
 
-const eventSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string(),
-  location: z.string(),
-  date: z.string().refine((val) => !val || !isNaN(Date.parse(val)), {
-    message: "Invalid date format",
-  }),
-  age_group: z.string(),
-  skill_level: z.string(),
-  max_participants: z.number().min(1, "Max participants must be a number greater than 0"),
-  borough: z.string(),
-  parking: z.enum(["Yes", "No"]),
-  time_period: z.enum(["Morning", "Afternoon", "Evening"]),
-});
+export async function GET() {
+  try {
+    const result = await pool.query(`
+      SELECT id, name, borough, parking, toilets 
+      FROM places 
+      ORDER BY borough, name
+    `);
+    return Response.json(result.rows);
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    const validated = eventSchema.parse(body);
+    console.log("Received event data:", body);
+    
+    if (!body.organizer_id) {
+      return Response.json({ error: "organizer_id is required" }, { status: 400 });
+    }
 
-    const postedData = await pool.query(
+    const validated = schemas.event.parse(body);
+    
+    const result = await pool.query(
       `INSERT INTO meetups (
-        organizer_id, title, description, location, date, age_group, skill_level, max_participants, borough, parking, time_period
-      ) VALUES (
-        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
-      )`,
+        organizer_id, title, description, place_id, date, 
+        age_group, skill_level, max_participants, time_period
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      RETURNING *`,
       [
-        1,  // Assuming organizer_id is 1
+        validated.organizer_id,
         validated.title,
         validated.description,
-        validated.location,
+        validated.place_id,
         validated.date,
         validated.age_group,
         validated.skill_level,
         validated.max_participants,
-        validated.borough,
-        validated.parking,
         validated.time_period
       ]
     );
 
-    return NextResponse.json({ message: "Event inserted successfully" }, { status: 201 });
+    return Response.json(result.rows[0], { status: 201 });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+    console.error("Error creating event:", error);
+    if (error instanceof schemas.z.ZodError) {
+      return Response.json({ error: error.errors }, { status: 400 });
     }
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

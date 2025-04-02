@@ -1,8 +1,20 @@
-html,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 10px;
   padding: 0;
-  box-sizing: border-box;
-  height: 100vh;
-	background: #0b6e4f;
+  margin: 0;
+}
+
+.container {
+  @apply px-4;
+  @apply mx-auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 30px; 
+    padding-right: 30px;
+  }
 }

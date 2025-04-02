@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
-import { pool } from "@/db/script/index";
+import { queries } from "@/db";
 
 export async function GET() {
-	let res = await pool.query("SELECT * FROM meetups;");
-	return NextResponse.json(res.rows);
+  const events = await queries.getAllEvents();
+  return Response.json(events);
 }

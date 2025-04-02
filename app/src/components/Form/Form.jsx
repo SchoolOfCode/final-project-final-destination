@@ -1,26 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./Form.module.css";
 
-export default function EventForm({ submitForm }) {
+export default function EventForm({ submitForm, session, places, boroughs, selectedBorough, onBoroughChange }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    location: "",
+    place_id: "",
     date: "",
     age_group: "",
     skill_level: "",
-    max_participants: 0,
-    borough: "",
-    parking: "",
+    max_participants: "",
     time_period: "",
+    organizer_id: session?.user?.id
   });
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     if (name === "max_participants") {
-      value = parseInt(value) ;
+      value = parseInt(value);
     }
     setFormData((prevData) => ({
       ...prevData,
@@ -30,22 +28,46 @@ export default function EventForm({ submitForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await fetch(`${window.location.origin}/api/event`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    res = await res.json();
-    submitForm();
+    
+    try {
+      const eventData = {
+        ...formData,
+        place_id: parseInt(formData.place_id),
+        organizer_id: parseInt(session.user.id),
+        max_participants: parseInt(formData.max_participants)
+      };
+  
+      console.log("Submitting event data:", eventData);
+  
+      const response = await fetch(`${window.location.origin}/api/event`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Server response:", errorData);
+        throw new Error(errorData.error || "Failed to create event");
+      }
+  
+      const data = await response.json();
+      console.log("Event created successfully:", data);
+      submitForm();
+    } catch (error) {
+      console.error("Error creating event:", error);
+      alert(`Failed to create event: ${error.message}`);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.formGroup}>
-        <label htmlFor="title" className={styles.label}>Title:</label>
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6">
+      <div className="form-control">
+        <label htmlFor="title" className="label">
+          <span className="label-text">Title:</span>
+        </label>
         <input
           type="text"
           id="title"
@@ -53,57 +75,90 @@ export default function EventForm({ submitForm }) {
           value={formData.title}
           onChange={handleChange}
           required
-          className={styles.input}
+          className="input input-bordered w-full"
         />
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="description" className={styles.label}>Description:</label>
+      <div className="form-control">
+        <label htmlFor="description" className="label">
+          <span className="label-text">Description:</span>
+        </label>
         <textarea
           id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
           required
-          className={styles.textarea}
+          className="textarea textarea-bordered w-full"
         />
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="location" className={styles.label}>Location:</label>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          value={formData.location}
+      <div className="form-control">
+        <label htmlFor="borough" className="label">
+          <span className="label-text">Filter by Borough:</span>
+        </label>
+        <select
+          id="borough"
+          value={selectedBorough}
+          onChange={(e) => onBoroughChange(e.target.value)}
+          className="select select-bordered w-full"
+        >
+          {boroughs.map((borough) => (
+            <option key={borough} value={borough}>
+              {borough}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-control">
+        <label htmlFor="place_id" className="label">
+          <span className="label-text">Location:</span>
+        </label>
+        <select
+          id="place_id"
+          name="place_id"
+          value={formData.place_id}
           onChange={handleChange}
           required
-          className={styles.input}
-        />
+          className="select select-bordered w-full"
+        >
+          <option value="">Select Location</option>
+          {places.map((place) => (
+            <option key={place.id} value={place.id}>
+              {place.name} ({place.parking ? "Parking Available" : "No Parking"})
+              {place.toilets ? ", Toilets Available" : ""}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="date" className={styles.label}>Date:</label>
+      <div className="form-control">
+        <label htmlFor="date" className="label">
+          <span className="label-text">Date:</span>
+        </label>
         <input
-          type="datetime-local"
+          type="date"
           id="date"
           name="date"
           value={formData.date}
           onChange={handleChange}
           required
-          className={styles.input}
+          className="input input-bordered w-full"
         />
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="age_group" className={styles.label}>Age Group:</label>
+      <div className="form-control">
+        <label htmlFor="age_group" className="label">
+          <span className="label-text">Age Group:</span>
+        </label>
         <select
           id="age_group"
           name="age_group"
           value={formData.age_group}
           onChange={handleChange}
           required
-          className={styles.select}
+          className="select select-bordered w-full"
         >
           <option value="">Select Age Group</option>
           <option value="7-8">7-8</option>
@@ -117,15 +172,17 @@ export default function EventForm({ submitForm }) {
         </select>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="skill_level" className={styles.label}>Skill Level:</label>
+      <div className="form-control">
+        <label htmlFor="skill_level" className="label">
+          <span className="label-text">Skill Level:</span>
+        </label>
         <select
           id="skill_level"
           name="skill_level"
           value={formData.skill_level}
           onChange={handleChange}
           required
-          className={styles.select}
+          className="select select-bordered w-full"
         >
           <option value="">Select Skill Level</option>
           <option value="Beginner">Beginner</option>
@@ -134,16 +191,19 @@ export default function EventForm({ submitForm }) {
         </select>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="max_participants" className={styles.label}>Max Participants:</label>
+      <div className="form-control">
+        <label htmlFor="max_participants" className="label">
+          <span className="label-text">Max Participants:</span>
+        </label>
         <select
           id="max_participants"
           name="max_participants"
           value={formData.max_participants}
           onChange={handleChange}
           required
-          className={styles.select}
+          className="select select-bordered w-full"
         >
+          <option value="">Select Max Participants</option>
           {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
             <option key={number} value={number}>
               {number}
@@ -152,44 +212,17 @@ export default function EventForm({ submitForm }) {
         </select>
       </div>
 
-      <div className={styles.formGroup}>
-        <label htmlFor="borough" className={styles.label}>Borough:</label>
-        <input
-          type="text"
-          id="borough"
-          name="borough"
-          value={formData.borough}
-          onChange={handleChange}
-          required
-          className={styles.input}
-        />
-      </div>
-
-      <div className={styles.formGroup}>
-        <label htmlFor="parking" className={styles.label}>Parking:</label>
-        <select
-          id="parking"
-          name="parking"
-          value={formData.parking}
-          onChange={handleChange}
-          required
-          className={styles.select}
-        >
-          <option value="">Select Parking Option</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-      <div className={styles.formGroup}>
-        <label htmlFor="time_period" className={styles.label}>Time Period:</label>
+      <div className="form-control">
+        <label htmlFor="time_period" className="label">
+          <span className="label-text">Time Period:</span>
+        </label>
         <select
           id="time_period"
           name="time_period"
           value={formData.time_period}
           onChange={handleChange}
           required
-          className={styles.select}
+          className="select select-bordered w-full"
         >
           <option value="">Select Time Period</option>
           <option value="Morning">Morning</option>
@@ -198,7 +231,7 @@ export default function EventForm({ submitForm }) {
         </select>
       </div>
 
-      <button type="submit" className={styles.button}>Submit</button>
+      <button type="submit" className="btn btn-primary w-full">Create Event</button>
     </form>
   );
 }
